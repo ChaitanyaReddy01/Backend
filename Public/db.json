@@ -1,0 +1,35 @@
+{"Flight_Status": [{
+    "Flight_Number": "Ek456",
+    "Departure_Airport": "LGA",
+    "Arrival_Airport": "HVN",
+    "Flight_Duration": "2hr 15min",
+    "Arrival_Time": "18:06"
+  },
+  {
+    "Flight_Number": "IH213",
+    "Departure_Airport": "JFK",
+    "Arrival_Airport": "DCA",
+    "Flight_Duration": "1hr 30min",
+    "Arrival_Time": "14:45"
+  },
+  {
+    "Flight_Number": "AA226",
+    "Departure_Airport": "BDL",
+    "Arrival_Airport": "ORD",
+    "Flight_Duration": "2hr 45min",
+    "Arrival_Time": "19:50"
+  },
+  {
+    "Flight_Number": "UA143",
+    "Departure_Airport": "EWR",
+    "Arrival_Airport": "FLL",
+    "Flight_Duration": "3hr 15min",
+    "Arrival_Time": "02:00 AM"
+  },
+  {
+    "Flight_Number": "QR156",
+    "Departure_Airport": "SFO",
+    "Arrival_Airport": "DFW",
+    "Flight_Duration": "3hr 30min",
+    "Arrival_Time": "5:10 AM"
+  }]}
