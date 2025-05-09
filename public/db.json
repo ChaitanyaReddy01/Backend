@@ -41,29 +41,27 @@
   "Status": "Delayed" 
 }
 ,
-            {
-              "Flight_Number": "BG246",
-              "Departure_Airport": "ORD",
-              "Arrival_Airport": "JFK",
-              "Flight_Duration": "2hr 10min",
-              "Arrival_Time": "19:45",
-              "Status": "Delayed"
-            },
-            {
-              "Flight_Number": "JJ213",
-              "Departure_Airport": "LAF",
-              "Arrival_Airport": "HVN",
-              "Flight_Duration": "3hr 15min",
-              "Arrival_Time": "20:45",
-              "Status": "Ontime"
-            },
-            {
-              "Flight_Number": "AR111",
-              "Departure_Airport": "JFK",
-              "Arrival_Airport": "DEL",
-              "Flight_Duration": "16hr 30min",
-              "Arrival_Time": "14:45",
-              "Status": "Delayed"
-            }]}
-
-
+{
+  "Flight_Number": "BG246",
+  "Departure_Airport": "ORD",
+  "Arrival_Airport": "JFK",
+  "Flight_Duration": "2hr 10min",
+  "Arrival_Time": "19:45",
+  "Status": "Delayed"
+  },
+  {
+  "Flight_Number": "JJ213",
+  "Departure_Airport": "LAF",
+  "Arrival_Airport": "HVN",
+  "Flight_Duration": "3hr 15min",
+  "Arrival_Time": "20:45",
+  "Status": "Ontime"
+  },
+  {
+  "Flight_Number": "AR111",
+  "Departure_Airport": "JFK",
+  "Arrival_Airport": "DEL",
+  "Flight_Duration": "16hr 30min",
+  "Arrival_Time": "14:45",
+  "Status": "Delayed"
+  }]}
