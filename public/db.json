@@ -5,8 +5,7 @@
   "Arrival_Airport": "HVN",
   "Flight_Duration": "2hr 15min",
   "Arrival_Time": "18:06",
-  "Status": "Ontime",
-  "Image_URL": "https://images.app.goo.gl/yVuRv7WYbthrmLFi6"
+  "Status": "Ontime"
 },
 {
   "Flight_Number": "IH213",

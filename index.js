@@ -1,79 +1,3 @@
-// const path  = require('path');
-// console.log(path.basename(__filename)); // index.js
-// console.log(path.dirname(__filename)); //  
-// console.log(path.extname(__filename)); // .js
-
-
-// const URL = require('url').URL;
-// const myURL = new URL('https://ibibek.com:1234/index.html/images?id=john&status=active&age=33');
-
-// // console.log(myURL.href);
-// // console.log(myURL.toString());
-
-// // console.log(myURL.host);
-// // console.log(myURL.hostname);
-// // console.log(myURL.pathname);
-// console.log(myURL.search);
-// console.log(myURL.searchParams);
-
-// const fs = require('fs');
-
- 
-
-// const path = require('path');
-
- 
-
-// // path.join(__dirname,'/test')
-
- 
-
-// // fs.mkdir( path.join(__dirname,'/test') , function(err){
-
-    
-
-// //     if(err){
-
-// //         console.log('Directory already exists');}
-
-// //     }
-
-// // )
-
-// const fs = require('fs');
-// const path = require('path');
-
-// fs.writeFile(path.join(__dirname,'/test', 'hello.txt'), "We just wrote something", err => {
-//     if(err) throw err;
-//     console.log( "Created a file, and wrote something")
-//     // fs.appendFile(path.join(__dirname,'/test', 'hello.txt'), "After creating a file, added this text", err => {
-//     //     if(err) throw err;
-//     //     console.log( "Created a file, and wrote something")
-//     // })
-// })
-// const fs = require('fs');
-// const path = require('path');
-
-// const dirPath = path.join(__dirname, 'test');
-
-// fs.mkdir(dirPath, { recursive: true }, (err) => {
-//     if (err) throw err;
-//     fs.writeFile(path.join(dirPath, 'hello.txt'), "We just wrote something", err => {
-//         if(err) throw err;
-//         console.log("Created a file, and wrote something");
-//     });
-// });
-// const fs = require('fs');
-// const path = require('path');
-// const dirPath = path.join(__dirname, 'Public');
-
-// fs.mkdir(dirPath, { recursive: true }, (err) => {
-//      if (err) throw err;
-//      fs.writeFile(path.join(dirPath, 'index.html'), "We just wrote something", err => {
-//          if(err) throw err;
-//          console.log("Created a file, and wrote something");
-//      });
-//  });
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -94,7 +18,8 @@ const server = http.createServer((req, res) => {
     // console.log(typeof(req.url));
 
     
-    if (req.url === '/') {       
+    if (req.url === '/') {
+            
         fs.readFile( path.join(__dirname,'public', 'index.html'),'utf-8', (err,data)=>{
             if (err) throw err;
             // console.log(typeof(data));
@@ -112,25 +37,74 @@ const server = http.createServer((req, res) => {
          })
     }
     else if (req.url === '/api') {
-         fs.readFile( path.join(__dirname,'public', 'db.json'),'utf-8', (err,data)=>{
-            if (err) throw err;
-            // console.log(typeof(data));
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+        // Handle preflight OPTIONS request
+        if (req.method === 'OPTIONS') {
+            res.writeHead(204);
+            res.end();
+            return;
+        }
+        const {MongoClient} = require('mongodb');
+
+        
+        async function main(){
+
+            const uri ="mongodb+srv://chaitu1616133416:123456789%40@cluster0.nb7ouia.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+
+            const client = new MongoClient(uri);
+        
+            try {
+                // Connect to the MongoDB cluster
+                await client.connect();
+                await findsomedata(client);
+        
+            } catch (e) {
+                console.error(e);
+            } finally {
+                await client.close();
+            }
+        }
+
+        main().catch(console.error);
+
+
+        async function findsomedata(client ){
+            const cursor = client.db("Flight_details").collection("Details").find({});
+            const results = await cursor.toArray();
+            //console.log(results);
+            const js= (JSON.stringify(results));
+            console.log(js);
             res.writeHead(200, {'Content-Type': 'application/json'});
-            res.end(data);
-         })    
+            res.end(js);
+
+        };
+        
     }
-    else{    
+    else if (req.url === '/my_image.png') {
+        fs.readFile(path.join(__dirname, 'public', 'my_image.png'), (err, data) => {
+            if (err) {
+                res.writeHead(500, { 'Content-Type': 'text/plain' });
+                res.end('Error loading image');
+            } else {
+                res.writeHead(200, { 'Content-Type': 'image/png' });
+                res.end(data);
+            }
+        });
+    }
+    else{
+         
         fs.readFile( path.join(__dirname,'public', '404.html'),'utf-8', (err,data)=>{
             if (err) throw err;
             // console.log(typeof(data));
             res.writeHead(404, {'Content-Type': 'text/html'});
             res.end(data);
          })
-         
     }
+
 });
+
 server.listen(8881, () => console.log("yay my server is running"));
-
-
-
-
